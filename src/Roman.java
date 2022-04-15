@@ -2,19 +2,26 @@ import java.util.HashMap;
 
 public class Roman {
     public static void main(String[] args) {
-
+        System.out.println(romanToInt("MCMXCIV"));
     }
 
-    public int romanToInt(String s){
-        int first =0;
-        int second =0;
-        for(int i = s.length(); i >=0 ; i--){
-            int romanInt = convertToInt(s.charAt(i));
+    public static int romanToInt(String s){
+
+        int sum =0;
+
+
+        for(int i = 0; i < s.length(); i++){
+                if(i + 1 < s.length() && convertToInt(s.charAt(i)) <convertToInt( s.charAt(i+1)) ){
+                    sum = sum - convertToInt(s.charAt(i));
+                }else{
+                    sum = sum + convertToInt( s.charAt(i));
+                }
         }
-        return 0;
+        return sum;
+
     }
 
-    private int convertToInt(char c) {
+    private static int convertToInt(char c) {
         HashMap<Character, Integer> hm = new HashMap<>();
         hm.put('I', 1);
         hm.put('V',5);
